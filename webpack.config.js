@@ -1,80 +1,70 @@
-'use strict';
-// const fs = require('fs');
 const path = require('path');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //通过 npm 安装
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpack = require('webpack'); //访问内置的插件
+const fs = require('fs');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
-  // entry: { 'main': './main.js' },
   entry: './main.js',
-  // entry: ['./main.js'],
   output: {
-    // filename: './build.js',
-    filename: 'build.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  devServer: {
+    contentBase: './dist', // 服务器开启目录
+    open: true,
+
+    proxy: {
+      '/api':'http://localhost:3000'
+    }
   },
   module: {
-    // loaders 关键字 改成了 rules
     rules: [
+      // { test: /\.txt$/, use: 'raw-loader' },]
+      {
+        test: /\.css/,
+        use: ['style-loader', 'css-loader']
+      },
+      // 浏览器私有前缀 postcss-loader  autoprefixer 
+      // 没有生效
       { 
-        test: /\.css$/,
-        // 方式一 
-        // use: ['style-loader', 'css-loader'], // css-loader?minimize
-        // 方式二
-        use: ['style-loader', {
-          loader: 'css-loader',
+        test: /\.scss$/, 
+        use: [
+          'style-loader', 
+          // 'css-loader', 
+          {
+            loader: 'css-loader', 
+            options: {
+              importLoaders: 2, // css 文件中 import 其他样式文件，强制走 下面 2个 loader
+              modules: true, // css 模块化开启
+            }
+          }, 
+          'sass-loader', 
+          'postcss-loader'
+        ]
+      },
+      {
+        // test: /\.jpg$/,
+        test: /\.(jpg|png|gif)$/,
+        use: {
+          // loader: 'file-loader',
+
+          // url-loader 最佳实践：< 1024 | 2048 的图片 可以直接注入到 打包的 js 文件，base64
+          loader: 'url-loader',
           options: {
-            // minimize: true,
+            // loader 的 Placeholder 占位符 https://webpack.js.org/loaders/file-loader/
+            // name: '[name].[ext]' // name 的值是 string
+            name: '[name]_[hash].[ext]', // name 的值是 string
+            outputPath: 'images/',
+            
+            // url-loader 需要配合 limit 属性
+            limit: 100,
           }
-        }], // css-loader?minimize
-        // 方式三
-        // loaders: ExtractTextPlugin.extract({
-        //   // 转换.css文件需要使用的loader
-        //   use: ['css-loader'],
-        // })
-      },
-      {
-        test: /\.js?$/,
-        loader: "babel-loader",
-        options: {
-          // presets: ["es2015"]
-        },
-      },
-      {
-        test: /\.vue?$/,
-        loader: "vue-loader",
+        }
       }
     ]
   },
-  resolve: {
-    extensions: [".js", ".json", ".jsx", ".css", ".vue"],
-    alias: {
-      "@": './src/components/'
-    }
-  },
-  devServer: {
-    proxy: { // proxy URLs to backend development server
-      '/api': 'http://localhost:3000'
-    },
-    contentBase: path.join(__dirname, "dist"),
-    compress: true,
-    port: 9000,
-    hot: true
-  },
   plugins: [
-    // new ExtractTextPlugin({
-    //   // 从.js文件中提取出来的.css文件的名称
-    //   filename: `[name]_[contenthash:8].css`,
-    // }),
-    // new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Hot Module Replacement',
-      template: './public/index.html',
-    }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+      template: './public/index.html'
+    })
   ]
-}
+};
