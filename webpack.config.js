@@ -9,8 +9,8 @@ const webpack = require('webpack'); //访问内置的插件
 module.exports = {
   mode: 'development',
   // entry: { 'main': './main.js' },
-  // entry: './main.js',
-  entry: ['./main.js'],
+  entry: './main.js',
+  // entry: ['./main.js'],
   output: {
     // filename: './build.js',
     filename: 'build.js',
@@ -36,13 +36,13 @@ module.exports = {
         //   use: ['css-loader'],
         // })
       },
-      // {
-      //   test: /\.js?$/,
-      //   loader: "babel-loader",
-      //   options: {
-      //     presets: ["es2015"]
-      //   },
-      // },
+      {
+        test: /\.js?$/,
+        loader: "babel-loader",
+        options: {
+          // presets: ["es2015"]
+        },
+      },
       {
         test: /\.vue?$/,
         loader: "vue-loader",
@@ -72,7 +72,7 @@ module.exports = {
     // new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'Hot Module Replacement',
-      template: './src/index.html',
+      template: './public/index.html',
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()

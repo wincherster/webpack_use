@@ -1,9 +1,6 @@
 console.log('webpack run local');
+// import Home from './src/Home'
 
-require('./main.css');
-// require('style-loader!css-loader?minimize./main.css'); // 可这样指定 文件loader
-const show = require('./show.js');
+console.log('test reload', Home);
 
-show('Webpack');
-
-console.log('test reload');
+console.log('load end')
