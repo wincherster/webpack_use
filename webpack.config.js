@@ -34,7 +34,7 @@ module.exports = {
             loader: 'css-loader', 
             options: {
               importLoaders: 2, // css 文件中 import 其他样式文件，强制走 下面 2个 loader
-              modules: true, // css 模块化开启
+              // modules: true, // css 模块化开启
             }
           }, 
           'sass-loader', 
@@ -58,6 +58,11 @@ module.exports = {
             // url-loader 需要配合 limit 属性
             limit: 100,
           }
+        }
+      },{
+        test: /\.(eot|ttf|svg|woff)$/,
+        use: {
+          loader: 'file-loader'
         }
       }
     ]

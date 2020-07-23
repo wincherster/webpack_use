@@ -48,8 +48,9 @@ npm i webpack-cli -D
   }
 }
 ```
+### 项目配置步骤
 
-
+1. `css-loader`
 
 #### 相关问题汇总
 1. 重装系统后提交，`git push`报错，重新配置git账户后完成
