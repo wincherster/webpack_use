@@ -1,7 +1,7 @@
 
 
 
-
+import 'normalize.css';
 
 // 2020-07-14 webpack 3-2
 import avatar from './avatar.jpg';
