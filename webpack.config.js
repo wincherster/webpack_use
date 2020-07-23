@@ -16,6 +16,7 @@ module.exports = {
       '/api':'http://localhost:3000'
     }
   },
+  devTool: 'source-map', // 代码报错，映射到具体源码位置
   module: {
     rules: [
       // { test: /\.txt$/, use: 'raw-loader' },]
