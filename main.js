@@ -133,3 +133,40 @@ import './index.js';
 // var codeDom = document.createElement("code");
 //     codeDom.innerHTML = result;  // 这里调用了 Array.toString 方法
 // root.append(resultDom);
+
+
+// 牛客网， 算法题
+// 2020-07-28 剪绳子 算法题 【贪婪算法】
+function cutRope(number)
+{
+    // if(number < 2) return 0;
+    // if(number === 2) return 1;
+    // if(number === 3) return 2;
+    
+    // // 长度大于等于 5 时，尽可能多 剪去长度为 3 的绳子段
+    // let timesOf3 = Math.floor(length / 3);
+    
+    // 当绳子最后剩下的长度为 4 时，不能再剪去长度为 3 的绳子段
+    // if(number - timesOf3 * 3 === 1) timesOf3 -= 1;
+    
+    // let timesOf2 = Math.floor((number - timesOf3 * 3) / 2 );
+    
+    // return Math.pow(3, timesOf3) * Math.pow(2, timesOf2);
+
+
+    if(number===2) return 1;
+    if(number===3) return 2;
+
+    let a = Math.floor(number/3), b = number % 3;
+
+    switch(b){
+      case 0:return Math.pow(3,a);
+      case 1:return Math.pow(3,a-1)*4;
+      case 2:return Math.pow(3,a)*2;   
+    }
+    
+}
+
+console.log(cutRope(15), "用例: 15 ，对应输出应该为: 243");
+
+console.log(abc)

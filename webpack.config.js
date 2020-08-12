@@ -3,6 +3,7 @@ const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+  mode: 'development',
   entry: './main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -10,13 +11,20 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist', // 服务器开启目录
-    open: true,
-
+    open: true, // 自动打开浏览器
+    port: 8080, // 默认开启 8080 端口，可修改启动端口号
     proxy: {
       '/api':'http://localhost:3000'
     }
   },
-  devTool: 'source-map', // 代码报错，映射到具体源码位置
+  devtool: 'source-map', // 代码报错，映射到具体源码位置
+  // 'inline-source-map' 配置项，会将映射文件代码打包到 代码中去
+  // 'eval-source-map' 配置项，会将映射文件代码打包到 代码中去
+  // 'cheap-source-map' 只定位到 报错代码行，不会定位到行和列
+
+  // 最佳实践
+  // 'cheap-module-eval-source-map'  在 development 模式下是比较快，并且报错信息比较全面
+  // 'cheap-module-source-map'  在 production 模式提示效果会更好些
   module: {
     rules: [
       // { test: /\.txt$/, use: 'raw-loader' },]
