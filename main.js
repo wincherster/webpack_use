@@ -1,6 +1,3 @@
-
-
-
 import 'normalize.css';
 
 // 2020-07-14 webpack 3-2
@@ -11,10 +8,21 @@ import './index.js';
 
 
 
-// import createAvatar from './createAvatar'
-// createAvatar();
+import createAvatar from './createAvatar'
+createAvatar();
 
 
+var root = document.getElementById('root');
+
+var img = new Image();
+img.src = avatar;
+img.classList.add(style.avatar);
+
+root.append(img);
+
+var code = document.createElement("pre");
+// code.innerHTML = rgb2hex;
+root.append(code);
 
 
 
@@ -24,25 +32,6 @@ import './index.js';
 
 // 答案错误:您提交的程序没有通过所有的测试用例
 // case通过率为85.71%
-
-
-
-
-
-
-// var root = document.getElementById('root');
-
-// var img = new Image();
-// img.src = avatar;
-// img.classList.add(style.avatar);
-
-// root.append(img);
-
-// var code = document.createElement("pre");
-// code.innerHTML = rgb2hex;
-// root.append(code);
-
-
 
 // var nums1 = [1,2,3], m = 3, nums2 = [2,5,6], n = 3;
 
@@ -169,4 +158,4 @@ function cutRope(number)
 
 console.log(cutRope(15), "用例: 15 ，对应输出应该为: 243");
 
-console.log(abc)
+console.log(abc);

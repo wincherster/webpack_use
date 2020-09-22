@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const vConsolePlugin = require('vconsole-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -79,6 +80,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html'
+    }),
+    new vConsolePlugin({
+      enable: true, // 根据线上 or 预发环境配置
     })
   ]
 };

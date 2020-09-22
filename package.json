@@ -13,6 +13,7 @@
   "dependencies": {
     "html-webpack-plugin": "^4.3.0",
     "normalize.css": "^8.0.1",
+    "vconsole": "^3.3.4",
     "webpack": "^4.43.0"
   },
   "devDependencies": {
@@ -24,6 +25,7 @@
     "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
+    "vconsole-webpack-plugin": "^1.5.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   }
