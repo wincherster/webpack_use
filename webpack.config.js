@@ -1,7 +1,9 @@
 const path = require('path');
 const fs = require('fs');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const vConsolePlugin = require('vconsole-webpack-plugin');
+const VConsolePlugin = require('vconsole-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
@@ -11,6 +13,8 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
+    hot: true, // 热模块更新
+    hotOnly: true, // 热模块更新
     contentBase: './dist', // 服务器开启目录
     open: true, // 自动打开浏览器
     port: 8080, // 默认开启 8080 端口，可修改启动端口号
@@ -31,7 +35,7 @@ module.exports = {
       // { test: /\.txt$/, use: 'raw-loader' },]
       {
         test: /\.css/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader', 'postcss-loader']
       },
       // 浏览器私有前缀 postcss-loader  autoprefixer 
       // 没有生效
@@ -78,11 +82,17 @@ module.exports = {
     ]
   },
   plugins: [
+    // 2020-09-22 打包前清理dist目录，需要在 HtmlWebpackPlugin 之前
+    new CleanWebpackPlugin(),
+    // 2020-09-22 会在打包结束后，自动生成一个html文件，
+    // 并把打包生成的js文件自动引入到html文件中
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
-    new vConsolePlugin({
+    new VConsolePlugin({
       enable: true, // 根据线上 or 预发环境配置
-    })
+    }),
+    // 2020-09-22 开启 HMR 热模块更新
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
