@@ -55,3 +55,46 @@ npm i webpack-cli -D
 #### 相关问题汇总
 1. 重装系统后提交，`git push`报错，重新配置git账户后完成
 2. `post-css`目前配置后不会自动添加浏览器私有前缀（待解决）
+
+
+#### Babel 配置loader注意项
+
+1. 编写业务代码的时候可以采用，依赖注入的形式
+
+```javascript
+{
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        options: {
+          presets: [
+            ["@babel/preset-env", {
+              targets: {
+                chrome: "67"
+              },
+              useBuiltIns: 'usage', // 根据代码中的 语法变量名 处理，不用全处理打包，main.js文件会小80%
+            }]
+
+            ]
+        }
+
+```
+2. 编写库的时候，可以采用runtime的形式
+
+```javascript
+{
+  test: /\.js$/,
+  loader: 'babel-loader',
+  exclude: /node_modules/,
+  options: {
+    // 采用插件的形式进行配置
+    "plugins": [
+      ["@babel/plugin-transform-runtime", {
+        "corejs": 2, // false
+        "helpers": true,
+        "regenerator": true,
+        "useESModules": false,
+      }]
+    ]
+}
+```

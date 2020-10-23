@@ -78,6 +78,30 @@ module.exports = {
         use: {
           loader: 'file-loader'
         }
+      },{
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        // 抽离options 配置项到 .babelrc
+        // options: {
+          // presets: [
+            // ["@babel/preset-env", {
+            //   targets: {
+            //     chrome: "67"
+            //   },
+            //   useBuiltIns: 'usage', // 根据代码中的 语法变量名 处理，不用全处理打包，main.js文件会小80%
+            // }]
+
+            // ]
+          // 采用插件的形式进行配置
+        //   "plugins": [
+        //     ["@babel/plugin-transform-runtime", {
+        //       "corejs": 2, // false
+        //       "helpers": true,
+        //       "regenerator": true,
+        //       "useESModules": false,
+        //     }]]
+        // }
       }
     ]
   },

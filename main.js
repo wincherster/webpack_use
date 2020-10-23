@@ -1,5 +1,7 @@
 import 'normalize.css';
 
+// import "@babel/polyfil"; // webpack中配置
+
 // 2020-07-14 webpack 3-2
 import avatar from './avatar.jpg';
 
@@ -159,3 +161,5 @@ function cutRope(number)
 console.log(cutRope(15), "用例: 15 ，对应输出应该为: 243");
 
 console.log(abc);
+
+const ball = "foot ball"
