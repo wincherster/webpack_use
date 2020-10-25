@@ -10,7 +10,8 @@ module.exports = {
   entry: './main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: '[name].js', // 源文件名称
+    // filename: 'bundle.js',
   },
   devServer: {
     hot: true, // 热模块更新
@@ -22,7 +23,8 @@ module.exports = {
       '/api':'http://localhost:3000'
     }
   },
-  devtool: 'source-map', // 代码报错，映射到具体源码位置
+  devtool: 'cheap-module-eval-source-map',
+  // 'source-map', // 代码报错，映射到具体源码位置
   // 'inline-source-map' 配置项，会将映射文件代码打包到 代码中去
   // 'eval-source-map' 配置项，会将映射文件代码打包到 代码中去
   // 'cheap-source-map' 只定位到 报错代码行，不会定位到行和列

@@ -1,30 +1,49 @@
-import 'normalize.css';
+// import 'normalize.css';
 
-// import "@babel/polyfil"; // webpack中配置
+// import "@babel/polyfill"; // webpack中配置
+
+// react 打包配置 -----
+import "@babel/polyfill"; // webpack中配置
+
+import React, { Component } from 'react';
+import ReactDom from 'react-dom';
+
+
+class App extends Component {
+
+  render() {
+    return (
+      <div>Hello React App</div>
+    )
+  }
+}
+
+ReactDom.render(<App/>, document.getElementById('root'));
+// react 打包配置 ----- end
 
 // 2020-07-14 webpack 3-2
-import avatar from './avatar.jpg';
+// import avatar from './avatar.jpg';
 
-import style from './avatar.scss';
-import './index.js';
-
-
-
-import createAvatar from './createAvatar'
-createAvatar();
+// import style from './avatar.scss';
+// import './index.js';
 
 
-var root = document.getElementById('root');
 
-var img = new Image();
-img.src = avatar;
-img.classList.add(style.avatar);
+// import createAvatar from './createAvatar'
+// createAvatar();
 
-root.append(img);
 
-var code = document.createElement("pre");
-// code.innerHTML = rgb2hex;
-root.append(code);
+// var root = document.getElementById('root');
+
+// var img = new Image();
+// img.src = avatar;
+// img.classList.add(style.avatar);
+
+// root.append(img);
+
+// var code = document.createElement("pre");
+// // code.innerHTML = rgb2hex;
+// root.append(code);
 
 
 
