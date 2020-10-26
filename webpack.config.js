@@ -6,7 +6,7 @@ const VConsolePlugin = require('vconsole-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  mode: 'development',
+  mode: 'development', // 'production' 生产环境
   entry: './main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -120,5 +120,10 @@ module.exports = {
     }),
     // 2020-09-22 开启 HMR 热模块更新
     new webpack.HotModuleReplacementPlugin()
-  ]
+  ],
+  // Tree shaking 配置项
+  // mode为 production 时，该配置项不需要
+  optimization: {
+    usedExports: true
+  }
 };

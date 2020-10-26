@@ -1,5 +1,6 @@
 {
   "name": "webpack_project",
+  "sideEffects": false,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
