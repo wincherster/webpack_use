@@ -5,9 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --watch",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --config ./build/webpack.dev.js",
+    "build": "webpack --config ./build/webpack.prod.js"
   },
   "author": "",
   "license": "ISC",
@@ -39,6 +38,7 @@
     "url-loader": "^4.1.0",
     "vconsole-webpack-plugin": "^1.5.2",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.2.0"
   }
 }

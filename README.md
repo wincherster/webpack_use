@@ -101,3 +101,9 @@ npm i webpack-cli -D
 
 
 所有的配置优化，都是在减少代码侵入和耦合，测试git推远程问题
+
+### 注意事项
+
+1. Tree Shaking 只支持 ES Module，需要在 packag.json中 配置 sideEffects：false / [  忽略项1， "*.css"   ]
+
+2. mode 模式区分打包，拆分成公共config，devConfig，prodConfig文件，并且引入第三方的 webpack-merge ，实现配置项合并，最后放在build 目录下
